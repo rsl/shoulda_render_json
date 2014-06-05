@@ -1,12 +1,13 @@
 class ShouldaRenderJsonObjectMatcher
-  attr_reader :context, :root, :keys, :response, :json, :failure_message, :negative_failure_message
+  attr_reader :options, :context, :root, :keys, :response, :json, :failure_message, :negative_failure_message
 
   def initialize(root, options = {})
+    @options = options
     # Coercing types root: Symbol, keys: Array of Symbols
     @root = root.to_s
     @keys = {
-      required: [options[:required]].flatten.compact.map(&:to_s),
-      forbidden: [options[:forbidden]].flatten.compact.map(&:to_s)
+      required: massage_options(:required),
+      forbidden: massage_options(:forbidden),
     }
   end
 
@@ -58,15 +59,11 @@ private
   end
 
   def missing_keys
-    @missing_keys ||= keys[:required].select do |key|
-      key unless json[root].has_key?(key)
-    end
+    @missing_keys ||= keys[:required].reject{|key| json[root].has_key?(key)}
   end
 
   def forbidden_keys_found
-    @forbidden_keys ||= keys[:forbidden].select do |key|
-      key if json[root].has_key?(key)
-    end
+    @forbidden_keys ||= keys[:forbidden].select{|key| json[root].has_key?(key)}
   end
 
   def set_negative_failure_message(message)
@@ -87,5 +84,9 @@ private
 
   def expected_root_class
     Hash
+  end
+
+  def massage_options(key)
+    [options[key]].flatten.compact.map(&:to_s)
   end
 end
