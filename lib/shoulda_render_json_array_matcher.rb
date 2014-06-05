@@ -9,7 +9,7 @@ private
     @missing_keys ||= keys[:required].reject{|key| json[root].all?{|node| node.has_key?(key)}}
   end
 
-  def forbidden_keys_found
+  def forbidden_keys
     @forbidden_keys ||= keys[:forbidden].select{|key| json[root].all?{|node| node.has_key?(key)}}
   end
 

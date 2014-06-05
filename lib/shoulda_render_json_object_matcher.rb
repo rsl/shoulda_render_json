@@ -52,16 +52,16 @@ private
 
   def has_no_forbidden_keys?
     return true unless keys[:forbidden]
-    set_failure_message "Expected no child nodes for #{format_keys(forbidden_keys_found)} but they were present" if forbidden_keys_found.present?
+    set_failure_message "Expected no child nodes for #{format_keys(forbidden_keys)} but they were present" if forbidden_keys.present?
     # Negative failure here makes no sense since they are expected to not be present
-    forbidden_keys_found.empty?
+    forbidden_keys.empty?
   end
 
   def missing_keys
     @missing_keys ||= keys[:required].reject{|key| json[root].has_key?(key)}
   end
 
-  def forbidden_keys_found
+  def forbidden_keys
     @forbidden_keys ||= keys[:forbidden].select{|key| json[root].has_key?(key)}
   end
 
