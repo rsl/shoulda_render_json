@@ -45,14 +45,14 @@ private
 
   def has_required_keys?
     return true unless keys[:required]
-    set_failure_message "Expected child nodes for #{format_keys(missing_keys)} but there were none" if missing_keys.empty?
-    set_negative_failure_message "Expected no child nodes for #{format_keys(missing_keys)} but they were present" if missing_keys.present?
+    set_failure_message "Expected child nodes for #{format_keys(missing_keys)} but there were none"
+    set_negative_failure_message "Expected no child nodes for #{format_keys(missing_keys)} but they were present"
     missing_keys.empty?
   end
 
   def has_no_forbidden_keys?
     return true unless keys[:forbidden]
-    set_failure_message "Expected no child nodes for #{format_keys(forbidden_keys)} but they were present" if forbidden_keys.present?
+    set_failure_message "Expected no child nodes for #{format_keys(forbidden_keys)} but they were present"
     # Negative failure here makes no sense since they are expected to not be present
     forbidden_keys.empty?
   end
