@@ -56,6 +56,10 @@ assertions anyhow.
 
 That's it!
 
+## TODO
+
+1. Test coverage. I've extracted this from one of my own test suites so there's no tests.
+
 ## Contributing
 
 1. Fork it ( https://github.com/[my-github-username]/shoulda_render_json/fork )
