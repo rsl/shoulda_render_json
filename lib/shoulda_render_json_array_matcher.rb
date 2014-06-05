@@ -6,15 +6,11 @@ class ShouldaRenderJsonArrayMatcher < ShouldaRenderJsonObjectMatcher
 private
 
   def missing_keys
-    @missing_keys ||= keys[:required].select do |key|
-      key unless json[root].all?{|node| node.has_key?(key)}
-    end
+    @missing_keys ||= keys[:required].reject{|key| json[root].all?{|node| node.has_key?(key)}}
   end
 
   def forbidden_keys_found
-    @forbidden_keys ||= keys[:forbidden].select do |key|
-      key if json[root].any?{|node| node.has_key?(key)}
-    end
+    @forbidden_keys ||= keys[:forbidden].select{|key| json[root].all?{|node| node.has_key?(key)}}
   end
 
   def expected_root_class
