@@ -1,4 +1,4 @@
-# Shoulda RenderJson
+# Shoulda RenderJson [![Code Climate](https://codeclimate.com/github/rsl/shoulda_render_json.png)](https://codeclimate.com/github/rsl/shoulda_render_json)
 
 Shoulda macros for making very basic assertions about JSON responses
 
@@ -21,7 +21,7 @@ Or install it yourself as:
 I'm going to presume you're already familiar with using Shoulda macros.
 The most basic assertion for `render_json` will be that your response's content-type is
 'application/json' (Rails' default JSON content-type) and that there is a root-level node
-named "foo" in the JSON. 
+named "foo" in the JSON.
 
 ```ruby
 should render_json('foo')
@@ -43,13 +43,13 @@ should render_json('foo', required: %w{bar baz})
 ```
 
 Sometimes, you may need to make assertions on Arrays inside JSON responses and not just Hash/Objects.
-I've got you covered there too. 
+I've got you covered there too.
 
 ```ruby
 should render_json('foo', type: Array)
 ```
 
-If you need to make assertions on the members of that Array, you can use the same `required` and 
+If you need to make assertions on the members of that Array, you can use the same `required` and
 `forbidden` options but be aware these assertions will be expected to be true for *every* member
 of the Array. If you've got members that violate this, you'll probably be better off writing custom
 assertions anyhow.
