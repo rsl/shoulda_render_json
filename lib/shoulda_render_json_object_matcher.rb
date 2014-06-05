@@ -1,5 +1,5 @@
 class ShouldaRenderJsonObjectMatcher
-  attr_reader :options, :context, :root, :keys, :response, :json, :failure_message, :negative_failure_message
+  attr_reader :options, :context, :root, :keys, :response, :failure_message, :negative_failure_message
 
   def initialize(root, options = {})
     @options = options
@@ -17,7 +17,6 @@ class ShouldaRenderJsonObjectMatcher
 
   def matches?(controller)
     @response = controller.response
-    parse_json
     matches_content_type? &&
       matches_root? &&
       has_required_keys? &&
@@ -78,8 +77,8 @@ private
     keys.map{|key| "'#{key}'"}.join(', ')
   end
 
-  def parse_json
-    @json = JSON.parse(response.body)
+  def json
+    @json ||= JSON.parse(response.body)
   end
 
   def expected_root_class
