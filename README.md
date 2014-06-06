@@ -1,4 +1,4 @@
-# Shoulda RenderJson [![Code Climate](https://codeclimate.com/github/rsl/shoulda_render_json.png)](https://codeclimate.com/github/rsl/shoulda_render_json)
+# Shoulda RenderJson [![Code Climate](https://codeclimate.com/github/rsl/shoulda_render_json.png)](https://codeclimate.com/github/rsl/shoulda_render_json) [![Gem Version](https://badge.fury.io/rb/shoulda_render_json.svg)](http://badge.fury.io/rb/shoulda_render_json)
 
 Shoulda macros for making very basic assertions about JSON responses
 
