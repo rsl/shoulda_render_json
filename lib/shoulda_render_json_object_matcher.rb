@@ -21,6 +21,9 @@ class ShouldaRenderJsonObjectMatcher
       matches_root? &&
       has_required_keys? &&
       has_no_forbidden_keys?
+  rescue JSON::ParserError
+    set_failure_message "Response body was not a valid JSON string"
+    false
   end
 
 private
